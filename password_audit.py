@@ -1,3 +1,7 @@
+print("================================")
+print("       ANALISADOR DE SENHA")
+print("================================")
+
 senha = input("Digite uma senha: ")
 
 tamanho = len(senha)
@@ -16,51 +20,53 @@ senha_valida= True
 
 pontuacao = 0
 
-if tamanho < 8:
-    print("A senha precisa ter pelo menos 8 caracteres.")
-    senha_valida = false
-
+if tamanho >= 8:
+    print("[✓] Pelo menos 8 caracteres")
 else:
-        pontuacao += 1
+    print("[✗] Pelo menos 8 caracteres")
+    senha_valida = False
 
-if not tem_numero:
-    print("A senha precisa de pelo menos um número")
-    senha_valida = false
 
+if tem_numero:
+    print("[✓] Possui número")
 else:
-        pontuacao += 1
+    print("[✗] Possui número")
+    senha_valida = False
 
-if not tem_maiuscula:
-    print("A senha precisa de pelo menos uma letra maiúscula")
-    senha_valida = false
 
-else: 
-        pontuacao += 1
-
-if not tem_minuscula:
-    print("A senha precisa ter ao menos uma letra minúscula")
-    senha_valida = false
-
+if tem_maiuscula:
+    print("[✓] Possui letra maiúscula")
 else:
-        pontuacao += 1
+    print("[✗] Possui letra maiúscula")
+    senha_valida = False
 
-if not tem_especial:
-    print("A senha precisa ter ao menos um especial")
-    senha_valida = false
+if tem_minuscula:
+    print("[✓] Possui letra minúscula")
+else:
+    print("[✗] Possui letra minúscula")
+    senha_valida = False
 
-else: 
-    pontuacao += 1
+if tem_especial:
+    print("[✓] Possui caractere especial")
+else:
+    print("[✗] Possui caractere especial")
+    senha_valida = False
 
 
-if senha_valida:
-    print("Senha aprovada!")
-
-print("pontuação", pontuacao)
+print("--------------------------------")
+print("Pontuação:", pontuacao, "/5")
 
 if pontuacao == 5:
-    print("Força da senha: FORTE")
-elif pontuacao == 3:
-    print("Força da senha: MÉDIA")
+    print("Força: FORTE")
+elif pontuacao >= 3:
+    print("Força: MÉDIA")
 else:
-    print("Força da senha: FRACA")
+    print("Força: FRACA")
+
+if senha_valida:
+    print("Status: SENHA APROVADA")
+else:
+    print("Status: SENHA NÃO APROVADA")
+
+print("================================")
 

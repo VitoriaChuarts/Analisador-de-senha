@@ -1,0 +1,28 @@
+import argparse
+import getpass
+import json
+from password_audit import PasswordAuditor
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Analisador de força de senha")
+    parser.add_argument("--min-length", type=int, default=8, help="Tamanho mínimo exigido")
+    parser.add_argument("--password", type=str, help="Senha a analisar (evita o prompt interativo)")
+    parser.add_argument("--json", action="store_true", help="Saída em formato JSON")
+    args = parser.parse_args()
+
+    senha = args.password or getpass.getpass("Digite uma senha (não será exibida): ")
+    analyzer = PasswordAuditor(tamanho_minimo=args.min_length)
+    resultado = analyzer.analisar_senha(senha)
+
+    if args.json:
+        print(json.dumps({
+            "pontuacao": resultado.criterios_atendidos,
+            "entropia_bits": round(resultado.entropia_bits, 1),
+            "classificacao": resultado.classificacao,
+            "aprovado": resultado.aprovado,
+        }, ensure_ascii=False, indent=2))
+    else:
+        analyzer.imprimir_relatorio(resultado)
+
+if __name__ == "__main__":
+    main()

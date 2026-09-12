@@ -11,8 +11,7 @@ Funcionalidades:
 ✅ Cálculo de entropia (bits) com base no espaço de caracteres usado
 ✅ Classificação final: Senha Fraca, Senha Média, Senha Forte ou Senha Comum
 ✅ Leitura segura da senha no terminal (não exibida na tela, via getpass)
-
-🧠 Como funciona:
+ Como funciona:
 
 O script pontua a senha em 6 critérios:
 
@@ -31,7 +30,7 @@ Python 3.10 ou superior (usa from __future__ import annotations)
 
 Não há dependências externas — o projeto usa apenas a biblioteca padrão do Python (getpass, math, re, dataclasses).
 
-🚀 Como usar
+ Como usar
 
 Clone o repositório:
 

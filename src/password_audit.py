@@ -4,21 +4,17 @@ import getpass
 import math
 import re
 from dataclasses import dataclass, field
+from pathlib import Path    
 
 
-SENHAS_COMUNS = {
-    "123456",
-    "password",
-    "123456789",
-    "12345678",
-    "12345",
-    "1234567",
-    "1234567890",
-    "qwerty",
-    "abc123",
-    "111111",
-    "abcd1234",
-}
+
+def carregar_senhas_comuns(caminho: str = "senhas_comuns.txt") -> set[str]:
+    path = Path(__file__).parent / caminho
+    if not path.exists():
+        return set()
+    return {linha.strip() for linha in path.read_text(encoding="utf-8").splitlines() if linha.strip()}
+
+SENHAS_COMUNS = carregar_senhas_comuns()
 
 CARACTERES_ESPECIAIS = "!@#$%&*"
 
